@@ -6,3 +6,15 @@ pip3 install -r requirements.txt
 ```
 python3 main.py
 ```
+
+访问：http://127.0.0.1:8000
+
+## Docker方式运行项目
+```
+docker build -t 'blog' .
+```
+```
+docker run -d -p 8000:8000 blog 
+```
+
+访问：http://127.0.0.1:8000

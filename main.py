@@ -10,18 +10,13 @@ import asyncio
 from app import article
 from app.models import Article
 from app.base import BaseHandler
-
+from app.models import database
 
 from playhouse.shortcuts import model_to_dict
 import json
 
 def json_model(model):
     return model_to_dict(model)
-
-
-# 这里mytest和root分别指代数据库名称以及用户和密码
-database = peewee_async.PooledMySQLDatabase("blog",host="127.0.0.1",port=3306,user="root",password="root")
-
 
 
 class MainHandler(BaseHandler):
@@ -60,8 +55,8 @@ async def redis_pool(loop):
     
     return await aioredis.create_redis_pool('redis://localhost', minsize=1, maxsize=10000, encoding='utf8', loop=loop)
 
-loop = asyncio.get_event_loop()
-application.redis = loop.run_until_complete(redis_pool(loop))
+#loop = asyncio.get_event_loop()
+#application.redis = loop.run_until_complete(redis_pool(loop))
 
 application.json_model = json_model
 
